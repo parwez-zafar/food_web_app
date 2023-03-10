@@ -110,7 +110,7 @@ const Signup = () => {
                                                     <div className="d-flex justify-content-sp mx-4 mb-3 mb-lg-4">
                                                         <button type="button" className="btn  m-1 btn-dark btn-lg" onClick={handleSubmit} >Register</button>
 
-                                                        <Link to='/login' className='btn btn-danger btn-lg m-auto'>Already a user</Link>
+                                                        <Link to='/login' className='btn m-1 text-center btn-danger btn-lg m-auto'>Already a user</Link>
                                                     </div>
 
                                                 </div>

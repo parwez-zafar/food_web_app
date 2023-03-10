@@ -1,13 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import Badge from 'react-bootstrap/Badge';
+// import { Modal } from 'bootstrap/dist/js/bootstrap.bundle';
+import Model from '../Model';
+import Cart from '../screens/Cart';
+import { useCart } from './ContextReducer';
 
 const Navbar = () => {
+    let data = useCart();
     const navigate = useNavigate();
     const handleLogout = () => {
         localStorage.removeItem('login_token');
 
         navigate('/login');
     }
+    const [cartView, setCartView] = useState(false);
     return (
 
 
@@ -44,7 +51,24 @@ const Navbar = () => {
 
                                 :
                                 <div className='d-flex'>
-                                    <div className="btn bg-white text-success mx-1" to="/">My Cart</div>
+                                    <div className="btn bg-white text-success mx-2" onClick={() => {
+                                        setCartView(true)
+                                    }} >
+                                        My Cart {" "}
+                                        {
+                                            data.length !== 0 ?
+                                                <Badge pill bg='danger'> {data.length}</Badge>
+                                                : null
+                                        }
+                                    </div>
+                                    {
+                                        cartView ?
+                                            <Model onClose={() => setCartView(false)}>
+                                                <Cart />
+                                            </Model>
+                                            : ""
+                                    }
+
                                     <div className="btn bg-white text-danger mx-1" onClick={handleLogout}>Logout</div>
                                 </div>
                         }

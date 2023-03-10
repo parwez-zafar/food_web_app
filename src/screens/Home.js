@@ -22,7 +22,7 @@ const Home = () => {
             });
 
             response = await response.json();
-            console.log(response[0], response[1]);
+            // console.log(response[0], response[1]);
             setFood_item(response[0]);
             setFood_cat(response[1]);
         }
@@ -32,7 +32,7 @@ const Home = () => {
     }
 
     useEffect(() => {
-        console.log(localStorage.getItem("login_token"));
+        // console.log(localStorage.getItem("login_token"));
         loadData();
     }, [])
 
@@ -94,11 +94,8 @@ const Home = () => {
                                                         <div key={filter_food_item._id} className="col-12 col-md-6 col-lg-3 ">
 
                                                             <Card
-                                                                food_name={filter_food_item.name}
-                                                                option={filter_food_item.options
-                                                                [0]}
-                                                                imgSrc={filter_food_item.img}
-                                                                description={filter_food_item.description}
+                                                                food_item={filter_food_item}
+                                                                option={filter_food_item.options[0]}
                                                             />
                                                         </div>
                                                     )

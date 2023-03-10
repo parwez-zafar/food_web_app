@@ -23,11 +23,10 @@ const Login = () => {
         const data = await response.json();
         // console.log(data.email);
         if (data.success) {
-            console.log(data);
+            // console.log(data);
             alert('login Success');
             localStorage.setItem("login_token", data.auth_token);
-            console.log(localStorage.getItem("login_token"));
-
+            // console.log(localStorage.getItem("login_token"));
             navigate('/')
         }
         else
@@ -78,7 +77,12 @@ const Login = () => {
                                                     <div className="d-flex justify-content-sp mx-4 mb-3 mb-lg-4">
                                                         <button type="button" className="btn  m-1 btn-dark btn-lg" onClick={handleSubmit} >Login</button>
 
-                                                        <Link to='/signup' className='btn btn-danger btn-lg m-auto'>Not a user</Link>
+                                                        <Link to='/signup' className='btn m-1 text-center btn-danger btn-lg m-auto'>
+                                                            Not a user
+                                                        </Link>
+                                                        {/* <Link to='/signup' className='btn'>
+                                                            <button type="button" className="btn  m-1 btn-dark btn-lg" >Not a user</button>
+                                                        </Link> */}
                                                     </div>
 
                                                 </div>
