@@ -23,6 +23,9 @@ const reducer = (state, action) => {
             // alert('added')
             return arr2;
         // break;
+        case "DROP":
+            let arr3 = [];
+            return arr3;
         default:
             console.log("Error in reducer");
     }

@@ -1,14 +1,17 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Navbar from '../components/Navbar';
 import { Link, useNavigate } from 'react-router-dom';
 const Login = () => {
     let navigate = useNavigate();
+
+
     const [user, setUser] = useState({
         email: "",
         password: "",
     });
     const handleSubmit = async (e) => {
         e.preventDefault();
+
         const { email, password } = user;
 
         const response = await fetch("http://localhost:8000/api/loginUser", {
@@ -22,10 +25,12 @@ const Login = () => {
         })
         const data = await response.json();
         // console.log(data.email);
+
         if (data.success) {
             // console.log(data);
             alert('login Success');
             localStorage.setItem("login_token", data.auth_token);
+            localStorage.setItem("user_email", data.email);
             // console.log(localStorage.getItem("login_token"));
             navigate('/')
         }
@@ -38,6 +43,22 @@ const Login = () => {
         let val = e.target.value;
         setUser({ ...user, [name]: val });
     }
+
+    const checkLogin = (() => {
+        // console.log('1 ')
+        const login_email = localStorage.getItem('user_email');
+        if (login_email) {
+            alert('Already Logged In')
+            // console.log(ct);
+            navigate('/');
+            // return;
+        }
+    })
+
+    useEffect(() => {
+        checkLogin()
+    }, [1])
+
     return (
         <>
             <Navbar />

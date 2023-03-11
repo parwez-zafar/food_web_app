@@ -4,7 +4,6 @@ import { useCart, useDispatchCart } from '../components/ContextReducer';
 // import trahs from '../trahs.svg';
 
 const Cart = () => {
-
     let data = useCart();
     let dispatch = useDispatchCart();
     if (data.length === 0) {
@@ -13,6 +12,26 @@ const Cart = () => {
                 <div className="m-5 w-100 text-center fs-3">The Cart is Empty</div>
             </>
         )
+    }
+
+    const checkOut = async () => {
+        let user_email = localStorage.getItem('user_email');
+        // console.log(user_email);
+        let response = await fetch("http://localhost:8000/api/orderData", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                order_data: data,
+                email: user_email,
+                order_date: new Date().toDateString()
+            })
+        })
+        console.log("order response: ", response);
+        if (response.status === 200) {
+            dispatch({ type: "DROP" })
+        }
     }
     let total_price = data.reduce((total, food) => total + food.price, 0)
 
@@ -43,7 +62,7 @@ const Cart = () => {
                                             <button type="button" className="btn p-0">
                                                 {/* <Delete onClick={() => { dispatch({ type: "REMOVE", index: index }) }} /> */}
 
-                                                <i class="material-icons" onClick={() => {
+                                                <i className="material-icons" onClick={() => {
                                                     dispatch({ type: "REMOVE", index: index })
                                                 }}>
                                                     delete
@@ -61,7 +80,7 @@ const Cart = () => {
                         Total Price : {total_price}.00
                     </h1>
                 </div>
-                <div className="btn btn-secondary mt-5">Check Out</div>
+                <div className="btn btn-secondary mt-5" onClick={checkOut}>Check Out</div>
             </div>
         </div>
     )

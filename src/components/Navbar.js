@@ -11,6 +11,7 @@ const Navbar = () => {
     const navigate = useNavigate();
     const handleLogout = () => {
         localStorage.removeItem('login_token');
+        localStorage.removeItem('user_email');
 
         navigate('/login');
     }
@@ -28,18 +29,20 @@ const Navbar = () => {
                         <span className="navbar-toggler-icon"></span>
                     </button>
                     <div className="collapse navbar-collapse" id="navbarNav">
-                        <ul className="navbar-nav me-auto mb-2">
-                            <li className="nav-item">
-                                <Link className="nav-link active fs-5 " aria-current="page" to="/">Home</Link>
-                            </li>
-                            {
-                                localStorage.getItem('login_token')
-                                    ? <li className="nav-item">
-                                        <Link className="nav-link active fs-5 " aria-current="page" to="/">My Orders</Link>
-                                    </li> : ""
-                            }
+                        <div className="navbar-nav me-auto mb-2 mt-2" >
 
-                        </ul>
+                            <div>
+                                <Link className=" mx-1 active  text-dark bg-white btn " aria-current="page" to="/">Home</Link>
+
+                                {
+                                    localStorage.getItem('login_token')
+                                        ?
+                                        <Link className=" mx-1 active  text-dark bg-white btn active" aria-current="page" to="/myOrder">My Orders</Link>
+                                        : ""
+                                }
+                            </div>
+
+                        </div>
 
                         {
                             !localStorage.getItem('login_token')

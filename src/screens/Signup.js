@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 
@@ -48,6 +48,20 @@ const Signup = () => {
         let val = e.target.value;
         setCredentials({ ...credentials, [name]: val })
     }
+    const checkLogin = (() => {
+        // console.log('1 ')
+        const login_email = localStorage.getItem('user_email');
+        if (login_email) {
+            alert('Already Logged In')
+            // console.log(ct);
+            navigate('/');
+            // return;
+        }
+    })
+
+    useEffect(() => {
+        checkLogin()
+    }, [1])
     return (
         <>
             <Navbar />
