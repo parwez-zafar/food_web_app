@@ -8,7 +8,7 @@ const MyOrder = () => {
     const fetchMyOrder = async () => {
         // console.log(localStorage.getItem('user_email'))
 
-        await fetch("http://localhost:8000/api/myOrderData", {
+        await fetch("https://prwz-food-app-backend.onrender.com/api/myOrderData", {
 
             method: 'POST',
             headers: {

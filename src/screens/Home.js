@@ -14,7 +14,7 @@ const Home = () => {
 
 
         try {
-            let response = await fetch("http://localhost:8000/api/foodData", {
+            let response = await fetch("https://prwz-food-app-backend.onrender.com/api/foodData", {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

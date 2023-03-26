@@ -16,7 +16,7 @@ const Signup = () => {
         e.preventDefault();
         const { name, email, location, password, c_password } = credentials;
         // console.log(name + " " + email + " " + location + " " + password + "  " + c_password);
-        const response = await fetch("http://localhost:8000/api/createUser", {
+        const response = await fetch("https://prwz-food-app-backend.onrender.com/api/createUser", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

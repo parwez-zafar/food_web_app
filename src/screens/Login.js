@@ -14,7 +14,7 @@ const Login = () => {
 
         const { email, password } = user;
 
-        const response = await fetch("http://localhost:8000/api/loginUser", {
+        const response = await fetch("https://prwz-food-app-backend.onrender.com/api/loginUser", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

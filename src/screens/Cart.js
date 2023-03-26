@@ -17,7 +17,7 @@ const Cart = () => {
     const checkOut = async () => {
         let user_email = localStorage.getItem('user_email');
         // console.log(user_email);
-        let response = await fetch("http://localhost:8000/api/orderData", {
+        let response = await fetch("https://prwz-food-app-backend.onrender.com/api/orderData", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
